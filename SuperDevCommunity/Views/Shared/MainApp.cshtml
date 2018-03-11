@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Page Title -->
+    <title>@ViewBag.Title - super dev; community</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="~/favicon.png" type="image/x-icon"/>
+
+    <!-- Bootstrap 4 -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-3.0.0.slim.min.js"></script>
+    <script src="~/Scripts/popper.js"></script>
+
+    <!-- Font Awsome -->
+    <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+</head>
+    <body>
+        @RenderBody()
+
+        @RenderSection("modals", required: false)
+
+        @RenderSection("srcipts", required: false)
+    </body>
+</html>
