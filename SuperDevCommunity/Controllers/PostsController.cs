@@ -21,9 +21,10 @@ namespace SuperDevCommunity.Controllers
         [Authorize]
         public ActionResult Create(Post post)
         {
-            int userId = int.Parse(User.Identity.Name);
+            User user = db.Users.Find(int.Parse(User.Identity.Name));
 
-            post.user_id = userId;
+            //post.user = user;
+            post.user_id = user.id;
 
             db.Posts.Add(post);
             db.SaveChanges();

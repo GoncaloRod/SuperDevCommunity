@@ -41,7 +41,7 @@ namespace SuperDevCommunity.Controllers
                     db.SaveChanges();
 
                     // Login
-                    FormsAuthentication.SetAuthCookie(user.username, false);
+                    FormsAuthentication.SetAuthCookie(user.id.ToString(), false);
 
                     return RedirectToAction("Index");
                 }

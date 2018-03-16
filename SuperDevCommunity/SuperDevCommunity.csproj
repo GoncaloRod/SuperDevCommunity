@@ -158,29 +158,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201803121115473_FirstMigration.cs" />
-    <Compile Include="Migrations\201803121115473_FirstMigration.Designer.cs">
-      <DependentUpon>201803121115473_FirstMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201803121941320_Second.cs" />
-    <Compile Include="Migrations\201803121941320_Second.Designer.cs">
-      <DependentUpon>201803121941320_Second.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201803151529371_bbb.cs" />
-    <Compile Include="Migrations\201803151529371_bbb.Designer.cs">
-      <DependentUpon>201803151529371_bbb.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201803151534132_ccc.cs" />
-    <Compile Include="Migrations\201803151534132_ccc.Designer.cs">
-      <DependentUpon>201803151534132_ccc.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201803151627388_ddd.cs" />
-    <Compile Include="Migrations\201803151627388_ddd.Designer.cs">
-      <DependentUpon>201803151627388_ddd.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201803160956509_gggg.cs" />
-    <Compile Include="Migrations\201803160956509_gggg.Designer.cs">
-      <DependentUpon>201803160956509_gggg.cs</DependentUpon>
+    <Compile Include="Migrations\201803162208471_First.cs" />
+    <Compile Include="Migrations\201803162208471_First.Designer.cs">
+      <DependentUpon>201803162208471_First.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -290,23 +270,8 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201803121115473_FirstMigration.resx">
-      <DependentUpon>201803121115473_FirstMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803121941320_Second.resx">
-      <DependentUpon>201803121941320_Second.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803151529371_bbb.resx">
-      <DependentUpon>201803151529371_bbb.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803151534132_ccc.resx">
-      <DependentUpon>201803151534132_ccc.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803151627388_ddd.resx">
-      <DependentUpon>201803151627388_ddd.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803160956509_gggg.resx">
-      <DependentUpon>201803160956509_gggg.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201803162208471_First.resx">
+      <DependentUpon>201803162208471_First.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

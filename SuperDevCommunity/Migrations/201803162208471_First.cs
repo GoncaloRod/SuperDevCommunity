@@ -3,7 +3,7 @@ namespace SuperDevCommunity.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class FirstMigration : DbMigration
+    public partial class First : DbMigration
     {
         public override void Up()
         {
@@ -64,9 +64,13 @@ namespace SuperDevCommunity.Migrations
                     {
                         id = c.Int(nullable: false, identity: true),
                         content = c.String(nullable: false),
+                        user_id = c.Int(nullable: false),
                         created_at = c.DateTime(nullable: false),
+                        user_id1 = c.Int(),
                     })
-                .PrimaryKey(t => t.id);
+                .PrimaryKey(t => t.id)
+                .ForeignKey("dbo.Users", t => t.user_id1)
+                .Index(t => t.user_id1);
             
             CreateTable(
                 "dbo.Users",
@@ -75,6 +79,8 @@ namespace SuperDevCommunity.Migrations
                         id = c.Int(nullable: false, identity: true),
                         username = c.String(nullable: false),
                         email = c.String(nullable: false),
+                        password = c.String(nullable: false),
+                        retryPassword = c.String(nullable: false),
                         profile_pic = c.String(),
                         created_at = c.DateTime(nullable: false),
                     })
@@ -127,10 +133,12 @@ namespace SuperDevCommunity.Migrations
             DropForeignKey("dbo.CommentAnswers", "comment_id1", "dbo.Comments");
             DropForeignKey("dbo.Comments", "user_id1", "dbo.Users");
             DropForeignKey("dbo.Comments", "post_id1", "dbo.Posts");
+            DropForeignKey("dbo.Posts", "user_id1", "dbo.Users");
             DropIndex("dbo.PostLikes", new[] { "user_id1" });
             DropIndex("dbo.PostLikes", new[] { "post_id1" });
             DropIndex("dbo.CommentLikes", new[] { "user_id1" });
             DropIndex("dbo.CommentLikes", new[] { "comment_id1" });
+            DropIndex("dbo.Posts", new[] { "user_id1" });
             DropIndex("dbo.Comments", new[] { "user_id1" });
             DropIndex("dbo.Comments", new[] { "post_id1" });
             DropIndex("dbo.CommentAnswers", new[] { "comment_id1" });
