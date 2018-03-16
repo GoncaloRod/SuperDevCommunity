@@ -21,5 +21,10 @@ namespace SuperDevCommunity.Models
         public Post post { get; set; }
 
         public DateTime created_at { get; set; }
+
+        public Comment()
+        {
+            created_at = DateTime.Now;
+        }
     }
 }

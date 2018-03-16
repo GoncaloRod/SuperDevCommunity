@@ -23,8 +23,19 @@ namespace SuperDevCommunity.Models
         [Display(Name = "Password")]
         public string password { get; set; }
 
+        [Required(ErrorMessage = "This filed is required!")]
+        [Compare("password", ErrorMessage = "Passwords does not match!")]
+        [DataType(DataType.Password)]
+        [Display(Name = "Retry Password")]
+        public string retryPassword { get; set; }
+
         public string profile_pic { get; set; }
 
         public DateTime created_at { get; set; }
+
+        public User()
+        {
+            created_at = DateTime.Now;
+        }
     }
 }

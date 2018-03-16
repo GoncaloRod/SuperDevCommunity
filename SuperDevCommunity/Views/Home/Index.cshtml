@@ -9,17 +9,57 @@
 <div class="row justify-content-center">
     <!-- Posts -->
     <div class="col-xl-9 col-lg-9 col-md-9 col-sm-11 col-11">
-        <!--
-        <form action="/Posts/Create" method="POST">
-            <div class="form-group">
-                <label for="content">Publish a Post</label>
-                <textarea class="form-control" id="content" name="content"></textarea>
+        <!-- New Post -->
+        @if (Request.IsAuthenticated)
+        {
+            <form action="/posts/create" method="POST">
+                @Html.AntiForgeryToken()
+
+                <div class="form-group">
+                    <label for="content">Say Something:</label>
+                    <textarea class="form-control" id="content" name="content"></textarea>
+                </div>
+
+                <button class="btn btn-primary btn-sm float-right" type="submit"><i class="fas fa-paper-plane"></i> Publish</button>
+            </form>
+        }
+        else
+        {
+            <div class="alert alert-primary">
+                Login <a href="/login">here</a> to post something <i class="em-svg em-wink"></i>
             </div>
-        </form>
-        -->
+        }
+
+        <!-- Latest Posts -->
+        <h4 style="margin-top: 25px;">Latest Posts</h4>
+        @if (ViewBag.Posts.Count > 0)
+        {
+            foreach (SuperDevCommunity.Models.Post post in ViewBag.Posts)
+            {
+                <div class="post-container">
+                    <p>@post.content</p>
+                    <div class="row">
+                        <!-- Post Creator -->
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                            <small class="text-muted">@post.user.username</small>
+                        </div>
+                        <!-- Like Button -->
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="alert alert-primary">
+                We don't have posts yet <i class="em-svg em-disappointed_relieved"></i>
+            </div>
+        }
     </div>
 
-    <!-- Top -->
+    <!-- Top Posts -->
     <div class="col-xl-3 col-lg-3 col-md-3 col-sm-11 col-11">
 
     </div>

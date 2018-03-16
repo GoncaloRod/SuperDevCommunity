@@ -17,5 +17,10 @@ namespace SuperDevCommunity.Models
         public Comment comment { get; set; }
 
         public DateTime created_at { get; set; }
+
+        public CommentLike()
+        {
+            created_at = DateTime.Now;
+        }
     }
 }

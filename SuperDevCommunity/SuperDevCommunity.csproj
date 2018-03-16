@@ -153,7 +153,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
-    <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
+    <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -165,11 +166,28 @@
     <Compile Include="Migrations\201803121941320_Second.Designer.cs">
       <DependentUpon>201803121941320_Second.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803151529371_bbb.cs" />
+    <Compile Include="Migrations\201803151529371_bbb.Designer.cs">
+      <DependentUpon>201803151529371_bbb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803151534132_ccc.cs" />
+    <Compile Include="Migrations\201803151534132_ccc.Designer.cs">
+      <DependentUpon>201803151534132_ccc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803151627388_ddd.cs" />
+    <Compile Include="Migrations\201803151627388_ddd.Designer.cs">
+      <DependentUpon>201803151627388_ddd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803160956509_gggg.cs" />
+    <Compile Include="Migrations\201803160956509_gggg.Designer.cs">
+      <DependentUpon>201803160956509_gggg.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\CommentAnswer.cs" />
     <Compile Include="Models\CommentAnswerLike.cs" />
     <Compile Include="Models\CommentLike.cs" />
+    <Compile Include="Controllers\LogoutController.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\PostLike.cs" />
     <Compile Include="Models\SuperDevCommunityContext.cs" />
@@ -253,10 +271,12 @@
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Registration\Index.cshtml" />
+    <Content Include="Views\Posts\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Posts\" />
+    <Folder Include="Views\Profile\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -275,6 +295,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201803121941320_Second.resx">
       <DependentUpon>201803121941320_Second.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803151529371_bbb.resx">
+      <DependentUpon>201803151529371_bbb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803151534132_ccc.resx">
+      <DependentUpon>201803151534132_ccc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803151627388_ddd.resx">
+      <DependentUpon>201803151627388_ddd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803160956509_gggg.resx">
+      <DependentUpon>201803160956509_gggg.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

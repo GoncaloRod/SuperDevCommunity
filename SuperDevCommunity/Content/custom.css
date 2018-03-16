@@ -15,3 +15,10 @@
 .logo-small {
     font-size: .9rem;
 }
+
+.post-container {
+    margin-top: 15px;
+    padding: .5rem .75rem;
+    border: 1px solid rgba(0, 0, 0, .15);
+    border-radius: .25rem;
+}

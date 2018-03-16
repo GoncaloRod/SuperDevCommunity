@@ -25,9 +25,9 @@ namespace SuperDevCommunity.Controllers
         {
             if (user.email != null & user.password != null)
             {
-                HMACSHA512 hMACSHA512 = new HMACSHA512(new byte[] { 1 });
+                HMACSHA512 encrypt = new HMACSHA512(new byte[] { 1 });
 
-                var password = hMACSHA512.ComputeHash(Encoding.UTF8.GetBytes(user.password));
+                var password = encrypt.ComputeHash(Encoding.UTF8.GetBytes(user.password));
 
                 user.password = Convert.ToBase64String(password);
 
@@ -35,19 +35,23 @@ namespace SuperDevCommunity.Controllers
                 {
                     if (_user.email == user.email && _user.password == user.password)
                     {
-                        FormsAuthentication.SetAuthCookie(user.username, false);
-                    }
+                        FormsAuthentication.SetAuthCookie(_user.id.ToString(), false);
 
-                    if (Request.QueryString["ReturnUrl"] == null)
-                    {
-                        return RedirectToAction("Index", "Home");
-                    }
-                    else
-                    {
-                        return Redirect(Request.QueryString["ReturnUrl"].ToString());
+                        if (Request.QueryString["ReturnUrl"] == null)
+                        {
+                            return RedirectToAction("Index", "Home");
+                        }
+                        else
+                        {
+                            return Redirect(Request.QueryString["ReturnUrl"].ToString());
+                        }
                     }
                 }
             }
+
+            ModelState.AddModelError("email", "Email and Password does not match!");
+            user.password = "";
+            return View(user);
         }
     }
 }
