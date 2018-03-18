@@ -36,6 +36,7 @@ namespace SuperDevCommunity.Models
         public User()
         {
             created_at = DateTime.Now;
+            profile_pic = "default.png";
         }
     }
 }

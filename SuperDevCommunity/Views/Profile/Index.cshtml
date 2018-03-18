@@ -1,0 +1,47 @@
+﻿@model SuperDevCommunity.Models.User
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/OnlyNavbar.cshtml";
+}
+
+<div class="row justify-content-center">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-11 col-11">
+        <!-- User name and profile pic -->
+        <div class="row align-items-center">
+            <!-- User's profile pic -->
+            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12">
+                <img class="rounded-circle" src="~/img/profile_pics/@Model.profile_pic" style="width: 100%;">
+            </div>
+            <!-- User's username -->
+            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12">
+                <h2>@Model.username</h2>
+            </div>
+        </div>
+
+        <!-- Option tabs -->
+        <nav>
+            <div class="nav nav-tabs" style="margin-top: 25px;">
+                <a class="nav-item nav-link active" data-toggle="tab" href="#tabPosts">Posts <span class="badge badge-pill badge-dark"><!-- TODO: User's posts counter -->10</span></a>
+                <a class="nav-item nav-link" data-toggle="tab" href="#tabLikes">Likes <span class="badge badge-pill badge-dark"><!-- TODO: User's likes counter -->33</span></a>
+                <a class="nav-item nav-link" data-toggle="tab" href="#tabComments">Comments <span class="badge badge-pill badge-dark"><!-- TODO: User's comments counter -->8</span></a>
+            </div>
+        </nav>
+        
+        <!-- Tabs -->
+        <div class="tab-content" style="margin-top: 10px;">
+            <!-- User's posts tab -->
+            <div class="tab-pane fade show active" id="tabPosts">
+                <!-- TODO: Show user's posts -->
+            </div>
+            <!-- User's likes tab -->
+            <div class="tab-pane fade" id="tabLikes">
+                <!-- TODO: Show user's likes -->
+            </div>
+            <!-- User's comments tab-->
+            <div class="tab-pane fade" id="tabComments">
+                <!-- TODO: Show user's comments -->
+            </div>
+        </div>
+    </div>
+</div>

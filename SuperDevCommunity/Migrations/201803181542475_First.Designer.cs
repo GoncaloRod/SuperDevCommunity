@@ -13,7 +13,7 @@ namespace SuperDevCommunity.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201803162208471_First"; }
+            get { return "201803181542475_First"; }
         }
         
         string IMigrationMetadata.Source

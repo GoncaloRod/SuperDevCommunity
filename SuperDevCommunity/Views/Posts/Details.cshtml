@@ -1,0 +1,44 @@
+﻿@model SuperDevCommunity.Models.Post
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/MainApp.cshtml";
+}
+
+<!-- Post Details -->
+<div class="post-container">
+    <!-- Post's User-->
+    <div class="row">
+        <!-- User's photo -->
+        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-2 col-2">
+            <img class="rounded-circle" src=""/><!-- TODO: User's profile pic -->
+        </div>
+        <!-- User's Name -->
+        <div class="col-xl-11 col-lg-11 col-md-11 col-sm-10 col-10">
+            <!-- TODO: User's username -->
+            <h4>Someone</h4>
+        </div>
+    </div>
+    <p>@Model.content</p>
+    <div class="row">
+        <!-- Like Button -->
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-right">
+            <!-- TODO: Likes Counter -->211 <a href=""><i class="far fa-thumbs-up"></i> Like</a>
+        </div>
+    </div>
+</div>
+
+<!-- Comment form -->
+<form action="/comments/create/@Model.id" method="POST" style="margin-top: 25px;">
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <label for="content">Say Something:</label>
+        <textarea class="form-control" id="content" name="content"></textarea>
+    </div>
+
+    <button class="btn btn-primary btn-sm float-right" type="submit"><i class="fas fa-paper-plane"></i> Publish</button>
+</form>
+
+<!-- Post comment's -->
+<!-- TODO: Post's comments -->
