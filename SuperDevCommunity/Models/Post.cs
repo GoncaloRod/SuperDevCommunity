@@ -13,14 +13,14 @@ namespace SuperDevCommunity.Models
         public string content { get; set; }
 
         // Foreing Key
-        public int userid { get; set; }
+        public int userId { get; set; }
         public User user { get; set; }
 
-        public DateTime createdat { get; set; }
+        public DateTime createdAt { get; set; }
 
         public Post()
         {
-            createdat = DateTime.Now;
+            createdAt = DateTime.Now;
         }
     }
 }

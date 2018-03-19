@@ -8,18 +8,17 @@
 <!-- Post Details -->
 <div class="post-container">
     <!-- Post's User-->
-    <div class="row">
+    <div class="row align-items-center">
         <!-- User's photo -->
         <div class="col-xl-1 col-lg-1 col-md-1 col-sm-2 col-2">
-            <img class="rounded-circle" src=""/><!-- TODO: User's profile pic -->
+            <img class="rounded-circle" src="/img/profile_pics/@Model.user.profilePic" style="width: 100%">
         </div>
         <!-- User's Name -->
         <div class="col-xl-11 col-lg-11 col-md-11 col-sm-10 col-10">
-            <!-- TODO: User's username -->
             <h4>@Model.user.username</h4>
         </div>
     </div>
-    <p>@Model.content</p>
+    <p style="margin-top: 10px;">@Model.content</p>
     <div class="row">
         <!-- Like Button -->
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-right">

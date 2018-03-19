@@ -43,7 +43,7 @@ namespace SuperDevCommunity.Controllers
                     // Login
                     FormsAuthentication.SetAuthCookie(user.id.ToString(), false);
 
-                    return RedirectToAction("Index");
+                    return Redirect("profile");
                 }
             }
             else

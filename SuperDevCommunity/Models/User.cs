@@ -29,14 +29,14 @@ namespace SuperDevCommunity.Models
         [Display(Name = "Retry Password")]
         public string retryPassword { get; set; }
 
-        public string profilepic { get; set; }
+        public string profilePic { get; set; }
 
-        public DateTime createdat { get; set; }
+        public DateTime createdAt { get; set; }
 
         public User()
         {
-            createdat = DateTime.Now;
-            profilepic = "default.png";
+            createdAt = DateTime.Now;
+            profilePic = "default.png";
         }
     }
 }

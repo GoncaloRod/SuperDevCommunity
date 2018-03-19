@@ -15,7 +15,7 @@ namespace SuperDevCommunity.Controllers
         public ActionResult Index()
         {
             ViewBag.Message = "Home";
-            ViewBag.Posts = db.Posts.OrderByDescending(p => p.createdat).Include(p => p.user).ToList();
+            ViewBag.Posts = db.Posts.OrderByDescending(p => p.createdAt).Include(p => p.user).ToList();
 
             return View();
         }

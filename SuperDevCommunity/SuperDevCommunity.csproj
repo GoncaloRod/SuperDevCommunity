@@ -158,9 +158,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201803191249219_First.cs" />
-    <Compile Include="Migrations\201803191249219_First.Designer.cs">
-      <DependentUpon>201803191249219_First.cs</DependentUpon>
+    <Compile Include="Helpers\Utils.cs" />
+    <Compile Include="Migrations\201803191918485_First.cs" />
+    <Compile Include="Migrations\201803191918485_First.Designer.cs">
+      <DependentUpon>201803191918485_First.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -223,8 +224,8 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201803191249219_First.resx">
-      <DependentUpon>201803191249219_First.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201803191918485_First.resx">
+      <DependentUpon>201803191918485_First.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

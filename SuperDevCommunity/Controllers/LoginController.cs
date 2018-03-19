@@ -43,7 +43,7 @@ namespace SuperDevCommunity.Controllers
                         }
                         else
                         {
-                            return Redirect(Request.QueryString["ReturnUrl"].ToString());
+                            return Redirect(Request.QueryString["ReturnUrl"]);
                         }
                     }
                 }

@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using System.Data.Entity.Core.Metadata.Edm
+@using SuperDevCommunity.Helpers
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -38,7 +40,8 @@
                         @if (Request.IsAuthenticated)
                         {
                             <!-- TODO: User's profile pic -->
-                            <li class="nav-item active"><a class="nav-link active" href="/profile">@Html.Raw(User.Identity.Name)</a></li>
+                            <li class="nav-item"><img class="rounded-circle" src="/img/profile_pics/@Html.GetUserWithId(int.Parse(User.Identity.Name)).profilePic" style="width: 40px;"></li>
+                            <li class="nav-item active"><a class="nav-link active" href="/profile">@Html.GetUserWithId(int.Parse(User.Identity.Name)).username</a></li>
                             <li class="nav-item active"><a class="nav-link active" href="/logout"><i class="fas fa-sign-out-alt"></i></a></li>
                         }
                         else

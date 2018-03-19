@@ -21,19 +21,19 @@ namespace SuperDevCommunity.Controllers
             User user = db.Users.Find(int.Parse(User.Identity.Name));
 
             //post.user = user;
-            post.userid = user.id;
+            post.userId = user.id;
 
             db.Posts.Add(post);
             db.SaveChanges();
 
-            return RedirectToAction("details", post.id);
+            return Redirect("/posts/details/" + post.id);
         }
 
         public ActionResult Details(int? id)
         {
             if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-            Post post = db.Posts.Find(id);
+            Post post = db.Posts.Where(p => p.id == id).Include(p => p.user).ToList()[0];
 
             if (post == null) return HttpNotFound();
 
