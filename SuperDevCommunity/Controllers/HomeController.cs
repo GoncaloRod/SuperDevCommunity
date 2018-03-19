@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity;
 
 namespace SuperDevCommunity.Controllers
 {
@@ -14,7 +15,7 @@ namespace SuperDevCommunity.Controllers
         public ActionResult Index()
         {
             ViewBag.Message = "Home";
-            ViewBag.Posts = db.Posts.OrderByDescending(p => p.created_at).ToList();
+            ViewBag.Posts = db.Posts.OrderByDescending(p => p.createdat).Include(p => p.user).ToList();
 
             return View();
         }

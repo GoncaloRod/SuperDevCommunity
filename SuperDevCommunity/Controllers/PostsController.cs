@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity;
 
 namespace SuperDevCommunity.Controllers
 {
@@ -20,7 +21,7 @@ namespace SuperDevCommunity.Controllers
             User user = db.Users.Find(int.Parse(User.Identity.Name));
 
             //post.user = user;
-            post.user_id = user.id;
+            post.userid = user.id;
 
             db.Posts.Add(post);
             db.SaveChanges();

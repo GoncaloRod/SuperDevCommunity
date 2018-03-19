@@ -24,7 +24,5 @@ namespace SuperDevCommunity.Models
         public System.Data.Entity.DbSet<SuperDevCommunity.Models.PostLike> PostLikes { get; set; }
         public System.Data.Entity.DbSet<SuperDevCommunity.Models.Comment> Comments { get; set; }
         public System.Data.Entity.DbSet<SuperDevCommunity.Models.CommentLike> CommentLikes { get; set; }
-        public System.Data.Entity.DbSet<SuperDevCommunity.Models.CommentAnswer> CommentAnswers { get; set; }
-        public System.Data.Entity.DbSet<SuperDevCommunity.Models.CommentAnswerLike> CommentAnswerLikes { get; set; }
     }
 }

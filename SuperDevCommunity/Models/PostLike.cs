@@ -9,18 +9,18 @@ namespace SuperDevCommunity.Models
         public int id { get; set; }
 
         // Foreign Key
-        public int user_id { get; set; }
+        public int userid { get; set; }
         public User user { get; set; }
 
         // Foreign Key
-        public int post_id { get; set; }
+        public int postid { get; set; }
         public Post post { get; set; }
 
-        public DateTime created_at { get; set; }
+        public DateTime createdat { get; set; }
 
         public PostLike()
         {
-            created_at = DateTime.Now;
+            createdat = DateTime.Now;
         }
     }
 }
