@@ -8,14 +8,18 @@
 <div class="row justify-content-center">
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-11 col-11">
         <!-- User name and profile pic -->
-        <div class="row align-items-center">
+        <div class="row align-items-center justify-content-center">
             <!-- User's profile pic -->
-            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12">
+            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-8 col-8">
                 <img class="rounded-circle" src="~/img/profile_pics/@Model.profilePic" style="width: 100%;">
             </div>
             <!-- User's username -->
-            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12">
-                <h2>@Model.username</h2>
+            <div class="col-xl-10 col-lg-10 col-md-10 col-sm-11 col-11">
+                <h2 class="dropdown-toggle pointer" data-toggle="dropdown">@Model.username</h2>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="">Change Password</a><!-- TODO: Change Password Modal -->
+                    <a class="dropdown-item" href="">Change Profile Pic</a><!-- TODO: Change Profile Pic Modal -->
+                </div>
             </div>
         </div>
 
