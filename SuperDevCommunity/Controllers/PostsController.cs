@@ -18,15 +18,21 @@ namespace SuperDevCommunity.Controllers
         [Authorize]
         public ActionResult Create(Post post)
         {
-            User user = db.Users.Find(int.Parse(User.Identity.Name));
+            if (ModelState.IsValid)
+            {
+                User user = db.Users.Find(int.Parse(User.Identity.Name));
 
-            //post.user = user;
-            post.userId = user.id;
+                post.userId = user.id;
 
-            db.Posts.Add(post);
-            db.SaveChanges();
+                post.createdAt = DateTime.Now;
 
-            return Redirect("/posts/details/" + post.id);
+                db.Posts.Add(post);
+                db.SaveChanges();
+
+                return Redirect("/posts/details/" + post.id);
+            }
+
+            return Redirect("/");
         }
 
         public ActionResult Details(int? id)
@@ -37,7 +43,33 @@ namespace SuperDevCommunity.Controllers
 
             if (post == null) return HttpNotFound();
 
+            ViewBag.Comments = db.Comments.Where(c => c.postId == post.id).ToList();
+
             return View(post);
+        }
+
+        [Authorize]
+        public ActionResult LikePost(int? id)
+        {
+            PostLike like = new PostLike();
+            like.postId = (int)id;
+            like.userId = int.Parse(User.Identity.Name);
+            like.createdAt = DateTime.Now;
+
+            Post post = db.Posts.Find(id);
+            post.likes++;
+
+            db.PostLikes.Add(like);
+            db.SaveChanges();
+
+            if (Request.QueryString["url"] == null)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return Redirect(Request.QueryString["url"]);
+            }
         }
     }
 }

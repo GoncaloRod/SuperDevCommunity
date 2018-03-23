@@ -12,6 +12,8 @@ namespace SuperDevCommunity.Models
         [Display(Name = "Content")]
         public string content { get; set; }
 
+        public int likes { get; set; }
+
         // Foreing Key
         public int userId { get; set; }
         public User user { get; set; }
@@ -21,10 +23,5 @@ namespace SuperDevCommunity.Models
         public Post post { get; set; }
 
         public DateTime createdAt { get; set; }
-
-        public Comment()
-        {
-            createdAt = DateTime.Now;
-        }
     }
 }

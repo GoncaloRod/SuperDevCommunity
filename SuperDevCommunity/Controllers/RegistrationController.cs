@@ -37,6 +37,9 @@ namespace SuperDevCommunity.Controllers
                     user.password = Convert.ToBase64String(password);
                     user.retryPassword = user.password;
 
+                    user.profilePic = "default.png";
+                    user.createdAt = DateTime.Now;
+
                     db.Users.Add(user);
                     db.SaveChanges();
 

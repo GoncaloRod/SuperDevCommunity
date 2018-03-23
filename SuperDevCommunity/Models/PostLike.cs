@@ -17,10 +17,5 @@ namespace SuperDevCommunity.Models
         public Post post { get; set; }
 
         public DateTime createdAt { get; set; }
-
-        public PostLike()
-        {
-            createdAt = DateTime.Now;
-        }
     }
 }

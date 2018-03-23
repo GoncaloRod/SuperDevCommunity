@@ -15,5 +15,15 @@ namespace SuperDevCommunity.Helpers
         {
             return db.Users.Find(id);
         }
+
+        public static bool IsPostLiked(this HtmlHelper htmlHelper, int postId, int userId)
+        {
+            return db.PostLikes.Where(l => l.postId == postId).Where(l => l.userId == userId).ToList().Count == 0;
+        }
+
+        public static bool IsCommentLiked(this HtmlHelper htmlHelper, int commentId, int userId)
+        {
+            return db.CommentLikes.Where(l => l.commentId == commentId).Where(l => l.userId == userId).ToList().Count == 0;
+        }
     }
 }

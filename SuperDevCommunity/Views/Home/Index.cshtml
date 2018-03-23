@@ -1,4 +1,6 @@
-﻿@{
+﻿@using SuperDevCommunity.Helpers
+
+@{
     ViewBag.Title = "Home";
     Layout = "~/Views/Shared/MainApp.cshtml";
 }
@@ -23,7 +25,7 @@
 {
     foreach (SuperDevCommunity.Models.Post post in ViewBag.Posts)
     {
-        <div class="post-container">
+        <div class="post-container" id="@post.id">
             <p>@post.content</p>
             <a class="text-muted float-lg-right" href="/posts/details/@post.id">Read More...</a>
             <div class="row" style="margin-top: 50px;">
@@ -33,7 +35,14 @@
                 </div>
                 <!-- Like Button -->
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 text-right">
-                    <!-- TODO: Likes Counter -->211 <a href=""><i class="far fa-thumbs-up"></i> Like</a>
+                    @if (Html.IsPostLiked(post.id, int.Parse(User.Identity.Name)))
+                    {
+                        @post.likes <a href="/posts/likepost/@post.id?url=/home#@post.id"><i class="far fa-thumbs-up"></i> Like</a>
+                    }
+                    else
+                    {
+                        @post.likes <a href="/posts/unlikepost/@post.id?url=/home#@post.id"><i class="far fa-thumbs-up"></i> Unlike</a>
+                    }
                 </div>
             </div>
         </div>

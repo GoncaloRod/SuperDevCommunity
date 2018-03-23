@@ -39,7 +39,6 @@
                     <ul class="navbar-nav">
                         @if (Request.IsAuthenticated)
                         {
-                            <!-- TODO: User's profile pic -->
                             <li class="nav-item"><img class="rounded-circle" src="/img/profile_pics/@Html.GetUserWithId(int.Parse(User.Identity.Name)).profilePic" style="width: 40px;"></li>
                             <li class="nav-item active"><a class="nav-link active" href="/profile">@Html.GetUserWithId(int.Parse(User.Identity.Name)).username</a></li>
                             <li class="nav-item active"><a class="nav-link active" href="/logout"><i class="fas fa-sign-out-alt"></i></a></li>

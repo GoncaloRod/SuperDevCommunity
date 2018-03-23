@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace SuperDevCommunity.Models
@@ -33,10 +35,10 @@ namespace SuperDevCommunity.Models
 
         public DateTime createdAt { get; set; }
 
-        public User()
-        {
-            createdAt = DateTime.Now;
-            profilePic = "default.png";
-        }
+        // Relationed tables
+        public ICollection<Post> posts { get; set; }
+        public ICollection<PostLike> postLikes { get; set; }
+        public ICollection<Comment> comments { get; set; }
+        public ICollection<CommentLike> commentLikes { get; set; }
     }
 }

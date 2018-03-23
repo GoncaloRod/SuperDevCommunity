@@ -17,8 +17,8 @@ namespace SuperDevCommunity.Migrations
                         createdAt = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.key)
-                .ForeignKey("dbo.Comments", t => t.commentId, cascadeDelete: false)
                 .ForeignKey("dbo.Users", t => t.userId, cascadeDelete: false)
+                .ForeignKey("dbo.Comments", t => t.commentId, cascadeDelete: false)
                 .Index(t => t.userId)
                 .Index(t => t.commentId);
             
@@ -28,13 +28,14 @@ namespace SuperDevCommunity.Migrations
                     {
                         id = c.Int(nullable: false, identity: true),
                         content = c.String(nullable: false),
+                        likes = c.Int(nullable: false),
                         userId = c.Int(nullable: false),
                         postId = c.Int(nullable: false),
                         createdAt = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.id)
-                .ForeignKey("dbo.Posts", t => t.postId, cascadeDelete: false)
                 .ForeignKey("dbo.Users", t => t.userId, cascadeDelete: false)
+                .ForeignKey("dbo.Posts", t => t.postId, cascadeDelete: false)
                 .Index(t => t.userId)
                 .Index(t => t.postId);
             
@@ -44,6 +45,7 @@ namespace SuperDevCommunity.Migrations
                     {
                         id = c.Int(nullable: false, identity: true),
                         content = c.String(nullable: false),
+                        likes = c.Int(nullable: false),
                         userId = c.Int(nullable: false),
                         createdAt = c.DateTime(nullable: false),
                     })
@@ -84,13 +86,13 @@ namespace SuperDevCommunity.Migrations
         
         public override void Down()
         {
-            DropForeignKey("dbo.PostLikes", "userId", "dbo.Users");
-            DropForeignKey("dbo.PostLikes", "postId", "dbo.Posts");
-            DropForeignKey("dbo.CommentLikes", "userId", "dbo.Users");
             DropForeignKey("dbo.CommentLikes", "commentId", "dbo.Comments");
-            DropForeignKey("dbo.Comments", "userId", "dbo.Users");
             DropForeignKey("dbo.Comments", "postId", "dbo.Posts");
             DropForeignKey("dbo.Posts", "userId", "dbo.Users");
+            DropForeignKey("dbo.PostLikes", "userId", "dbo.Users");
+            DropForeignKey("dbo.PostLikes", "postId", "dbo.Posts");
+            DropForeignKey("dbo.Comments", "userId", "dbo.Users");
+            DropForeignKey("dbo.CommentLikes", "userId", "dbo.Users");
             DropIndex("dbo.PostLikes", new[] { "postId" });
             DropIndex("dbo.PostLikes", new[] { "userId" });
             DropIndex("dbo.Posts", new[] { "userId" });

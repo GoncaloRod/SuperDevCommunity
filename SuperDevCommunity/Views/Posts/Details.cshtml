@@ -22,7 +22,7 @@
     <div class="row">
         <!-- Like Button -->
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-right">
-            <!-- TODO: Likes Counter -->211 <a href=""><i class="far fa-thumbs-up"></i> Like</a>
+            @Model.likes <a href="/posts/likepost/@Model.id?url=/posts/details/@Model.id"><i class="far fa-thumbs-up"></i> Like</a>
         </div>
     </div>
 </div>
@@ -32,12 +32,37 @@
     @Html.AntiForgeryToken()
 
     <div class="form-group">
-        <label for="content">Say Something:</label>
+        <label for="content">Comment This:</label>
         <textarea class="form-control" id="content" name="content"></textarea>
     </div>
 
-    <button class="btn btn-primary btn-sm float-right" type="submit"><i class="fas fa-paper-plane"></i> Publish</button>
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <button class="btn btn-primary btn-sm float-right" type="submit"><i class="fas fa-paper-plane"></i> Publish</button>
+        </div>
+    </div>
 </form>
 
 <!-- Post comment's -->
-<!-- TODO: Post's comments -->
+@foreach (SuperDevCommunity.Models.Comment comment in ViewBag.Comments)
+{
+    <div class="post-container">
+        <div class="row align-items-center">
+            <!-- User's photo -->
+            <div class="col-xl-1 col-lg-1 col-md-1 col-sm-2 col-2">
+                <img class="rounded-circle" src="/img/profile_pics/@comment.user.profilePic" style="width: 100%">
+            </div>
+            <!-- User's Name -->
+            <div class="col-xl-11 col-lg-11 col-md-11 col-sm-10 col-10">
+                <h5>@comment.user.username</h5>
+            </div>
+        </div>
+        <p style="margin-top: 10px;">@comment.content</p>
+        <div class="row">
+            <!-- Like Button -->
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-right">
+                @comment.likes <a href="/comments/likecomment/@comment.id?url=/posts/details/@Model.id"><i class="far fa-thumbs-up"></i> Like</a>
+            </div>
+        </div>
+    </div>
+}

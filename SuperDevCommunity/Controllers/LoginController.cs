@@ -16,6 +16,8 @@ namespace SuperDevCommunity.Controllers
 
         public ActionResult Index()
         {
+            if (User.Identity.IsAuthenticated) return Redirect("/home");
+
             return View();
         }
         
@@ -23,6 +25,8 @@ namespace SuperDevCommunity.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Index(User user)
         {
+            if (User.Identity.IsAuthenticated) return Redirect("/home");
+
             if (user.email != null & user.password != null)
             {
                 HMACSHA512 encrypt = new HMACSHA512(new byte[] { 1 });

@@ -17,7 +17,7 @@
             <div class="col-xl-10 col-lg-10 col-md-10 col-sm-11 col-11">
                 <h2 class="dropdown-toggle pointer" data-toggle="dropdown">@Model.username</h2>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="">Change Password</a><!-- TODO: Change Password Modal -->
+                    <a class="dropdown-item" href="/profile/changepassword">Change Password</a>
                     <a class="dropdown-item" href="">Change Profile Pic</a><!-- TODO: Change Profile Pic Modal -->
                 </div>
             </div>
@@ -26,9 +26,9 @@
         <!-- Option tabs -->
         <nav>
             <div class="nav nav-tabs" style="margin-top: 25px;">
-                <a class="nav-item nav-link active" data-toggle="tab" href="#tabPosts">Posts <span class="badge badge-pill badge-dark"><!-- TODO: User's posts counter -->10</span></a>
-                <a class="nav-item nav-link" data-toggle="tab" href="#tabLikes">Likes <span class="badge badge-pill badge-dark"><!-- TODO: User's likes counter -->33</span></a>
-                <a class="nav-item nav-link" data-toggle="tab" href="#tabComments">Comments <span class="badge badge-pill badge-dark"><!-- TODO: User's comments counter -->8</span></a>
+                <a class="nav-item nav-link active" data-toggle="tab" href="#tabPosts">Posts <span class="badge badge-pill badge-dark">@ViewBag.posts.Count</span></a>
+                <a class="nav-item nav-link" data-toggle="tab" href="#tabLikes">Likes <span class="badge badge-pill badge-dark">@ViewBag.likes.Count</span></a>
+                <a class="nav-item nav-link" data-toggle="tab" href="#tabComments">Comments <span class="badge badge-pill badge-dark">@ViewBag.comments.Count</span></a>
             </div>
         </nav>
         
