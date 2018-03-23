@@ -46,7 +46,7 @@ namespace SuperDevCommunity.Controllers
 
             if (Request.QueryString["url"] == null)
             {
-                return RedirectToAction("Index");
+                return Redirect("/posts/details/" + comment.post.id);
             }
             else
             {
