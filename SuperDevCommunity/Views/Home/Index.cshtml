@@ -35,13 +35,20 @@
                 </div>
                 <!-- Like Button -->
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 text-right">
-                    @if (Html.IsPostLiked(post.id, int.Parse(User.Identity.Name)))
+                    @if (Request.IsAuthenticated)
                     {
-                        @post.likes <a href="/posts/likepost/@post.id?url=/home#@post.id"><i class="far fa-thumbs-up"></i> Like</a>
+                        if (Html.IsPostLiked(post.id, int.Parse(User.Identity.Name)))
+                        {
+                            @post.likes <a href="/posts/likepost/@post.id?url=/home#@post.id"><i class="far fa-thumbs-up"></i> Like</a>
+                        }
+                        else
+                        {
+                            @post.likes <a href="/posts/unlikepost/@post.id?url=/home#@post.id"><i class="fas fa-thumbs-up"></i> Unlike</a>
+                        }
                     }
                     else
                     {
-                        @post.likes <a href="/posts/unlikepost/@post.id?url=/home#@post.id"><i class="far fa-thumbs-up"></i> Unlike</a>
+                        @post.likes <a href="/posts/likepost/@post.id?url=/home#@post.id"><i class="far fa-thumbs-up"></i> Like</a>
                     }
                 </div>
             </div>

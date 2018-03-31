@@ -1,4 +1,5 @@
 ﻿@model SuperDevCommunity.Models.Post
+@using SuperDevCommunity.Helpers
 
 @{
     ViewBag.Title = "Details";
@@ -22,7 +23,21 @@
     <div class="row">
         <!-- Like Button -->
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-right">
-            @Model.likes <a href="/posts/likepost/@Model.id?url=/posts/details/@Model.id"><i class="far fa-thumbs-up"></i> Like</a>
+            @if (Request.IsAuthenticated)
+            {
+                if (Html.IsPostLiked(Model.id, int.Parse(User.Identity.Name)))
+                {
+                    @Model.likes <a href="/posts/likepost/@Model.id?url=/posts/details/@Model.id"><i class="far fa-thumbs-up"></i> Like</a>
+                }
+                else
+                {
+                    @Model.likes <a href="/posts/unlikepost/@Model.id?url=/posts/details/@Model.id"><i class="fas fa-thumbs-up"></i> Unlike</a>
+                }
+            }
+            else
+            {
+                @Model.likes <a href="/posts/likepost/@Model.id?url=/posts/details/@Model.id"><i class="far fa-thumbs-up"></i> Like</a>
+            }
         </div>
     </div>
 </div>
@@ -61,7 +76,21 @@
         <div class="row">
             <!-- Like Button -->
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-right">
-                @comment.likes <a href="/comments/likecomment/@comment.id?url=/posts/details/@Model.id"><i class="far fa-thumbs-up"></i> Like</a>
+                @if (Request.IsAuthenticated)
+                {
+                    if (Html.IsCommentLiked(comment.id, int.Parse(User.Identity.Name)))
+                    {
+                        @comment.likes <a href="/comments/likecomment/@comment.id?url=/posts/details/@Model.id"><i class="far fa-thumbs-up"></i> Like</a>
+                    }
+                    else
+                    {
+                        @comment.likes <a href="/comments/unlikecomment/@comment.id?url=/posts/details/@Model.id"><i class="fas fa-thumbs-up"></i> Unlike</a>
+                    }
+                }
+                else
+                {
+                    @comment.likes <a href="/comments/likecomment/@comment.id?url=/home#@comment.id"><i class="far fa-thumbs-up"></i> Like</a>
+                }
             </div>
         </div>
     </div>

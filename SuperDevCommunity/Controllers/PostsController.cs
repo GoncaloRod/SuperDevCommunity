@@ -51,25 +51,66 @@ namespace SuperDevCommunity.Controllers
         [Authorize]
         public ActionResult LikePost(int? id)
         {
-            PostLike like = new PostLike();
-            like.postId = (int)id;
-            like.userId = int.Parse(User.Identity.Name);
-            like.createdAt = DateTime.Now;
+            int userId = int.Parse(User.Identity.Name);
 
-            Post post = db.Posts.Find(id);
-            post.likes++;
+            // Chek if user didn't liked this post
+            bool liked = db.PostLikes.Where(l => l.postId == id).Any(l => l.userId == userId);
 
-            db.PostLikes.Add(like);
-            db.SaveChanges();
-
-            if (Request.QueryString["url"] == null)
+            if (!liked)
             {
-                return Redirect("/posts/details/" + id);
+                PostLike like = new PostLike();
+                like.postId = (int)id;
+                like.userId = int.Parse(User.Identity.Name);
+                like.createdAt = DateTime.Now;
+
+                Post post = db.Posts.Find(id);
+                post.likes++;
+
+                db.PostLikes.Add(like);
+                db.SaveChanges();
+
+                if (Request.QueryString["url"] == null)
+                {
+                    return Redirect("/posts/details/" + id);
+                }
+                else
+                {
+                    return Redirect(Request.QueryString["url"]);
+                }
             }
-            else
+
+            return Redirect("/");
+        }
+
+        [Authorize]
+        public ActionResult UnlikePost(int? id)
+        {
+            int userId = int.Parse(User.Identity.Name);
+
+            // Chek if user didn't liked this post
+            bool liked = db.PostLikes.Where(l => l.postId == id).Any(l => l.userId == userId);
+
+            if (liked)
             {
-                return Redirect(Request.QueryString["url"]);
+                PostLike like = db.PostLikes.Where(l => l.postId == id).Single(l => l.userId == userId);
+
+                Post post = db.Posts.Find(id);
+                post.likes--;
+
+                db.PostLikes.Remove(like);
+                db.SaveChanges();
+
+                if (Request.QueryString["url"] == null)
+                {
+                    return Redirect("/posts/details/" + id);
+                }
+                else
+                {
+                    return Redirect(Request.QueryString["url"]);
+                }
             }
+
+            return Redirect("/");
         }
     }
 }

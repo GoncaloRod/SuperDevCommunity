@@ -33,25 +33,65 @@ namespace SuperDevCommunity.Controllers
 
         public ActionResult LikeComment(int? id)
         {
-            CommentLike like = new CommentLike();
-            like.commentId = (int)id;
-            like.userId = int.Parse(User.Identity.Name);
-            like.createdAt = DateTime.Now;
+            int userId = int.Parse(User.Identity.Name);
+            
+            // Check if user didn't liked this comment
+            bool liked = db.CommentLikes.Where(l => l.commentId == id).Any(l => l.userId == userId);
 
-            Comment comment = db.Comments.Find(id);
-            comment.likes++;
-
-            db.CommentLikes.Add(like);
-            db.SaveChanges();
-
-            if (Request.QueryString["url"] == null)
+            if (!liked)
             {
-                return Redirect("/posts/details/" + comment.post.id);
+                CommentLike like = new CommentLike();
+                like.commentId = (int)id;
+                like.userId = userId;
+                like.createdAt = DateTime.Now;
+
+                Comment comment = db.Comments.Find(id);
+                comment.likes++;
+
+                db.CommentLikes.Add(like);
+                db.SaveChanges();
+
+                if (Request.QueryString["url"] == null)
+                {
+                    return Redirect("/posts/details/" + comment.post.id);
+                }
+                else
+                {
+                    return Redirect(Request.QueryString["url"]);
+                }
             }
-            else
+
+            return Redirect("/");
+        }
+
+        public ActionResult UnlikeComment(int? id)
+        {
+            int userId = int.Parse(User.Identity.Name);
+
+            // Check if user liked this comment
+            bool liked = db.CommentLikes.Where(l => l.commentId == id).Any(l => l.userId == userId);
+
+            if (liked)
             {
-                return Redirect(Request.QueryString["url"]);
+                CommentLike like = db.CommentLikes.Where(l => l.commentId == id).Single(l => l.userId == userId);
+
+                Comment comment = db.Comments.Find(id);
+                comment.likes--;
+
+                db.CommentLikes.Remove(like);
+                db.SaveChanges();
+                
+                if (Request.QueryString["url"] == null)
+                {
+                    return Redirect("/posts/details/" + comment.post.id);
+                }
+                else
+                {
+                    return Redirect(Request.QueryString["url"]);
+                }
             }
+
+            return Redirect("/");
         }
     }
 }
