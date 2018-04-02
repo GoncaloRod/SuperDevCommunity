@@ -18,8 +18,7 @@
             <div class="col-xl-10 col-lg-10 col-md-10 col-sm-11 col-11">
                 <h2 class="dropdown-toggle pointer" data-toggle="dropdown">@Model.username</h2>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="/profile/changepassword">Change Password</a>
-                    <a class="dropdown-item" href="">Change Profile Pic</a><!-- TODO: Change Profile Pic Modal -->
+                    <a class="dropdown-item" href="/profile/changeprofilepic">Change Profile Pic</a>
                 </div>
             </div>
         </div>
@@ -47,7 +46,7 @@
                             <div class="row" style="margin-top: 50px;">
                                 <!-- Post Creator -->
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
-                                    <small class="text-muted">By @post.user.username at @post.createdAt.ToShortDateString()</small>
+                                    <small class="text-muted">By <a class="text-secondary" href="/users/profile/@post.user.id">@post.user.username</a> at @post.createdAt.ToShortDateString()</small>
                                 </div>
                                 <!-- Like Button -->
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 text-right">
@@ -93,7 +92,7 @@
                             <div class="row" style="margin-top: 50px;">
                                 <!-- Post Creator -->
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
-                                    <small class="text-muted">By @post.user.username at @post.createdAt.ToShortDateString()</small>
+                                    <small class="text-muted">By <a class="text-secondary" href="/users/profile/@post.user.id">@post.user.username</a> at @post.createdAt.ToShortDateString()</small>
                                 </div>
                                 <!-- Like Button -->
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 text-right">
@@ -141,7 +140,7 @@
                                 </div>
                                 <!-- User's Name -->
                                 <div class="col-xl-11 col-lg-11 col-md-11 col-sm-10 col-10">
-                                    <h5>@comment.user.username</h5>
+                                    <a href="/users/profile/@comment.user.id" style="color: #212529"><h5>@comment.user.username</h5></a>
                                 </div>
                             </div>
                             <p style="margin-top: 10px;">@comment.content</p>

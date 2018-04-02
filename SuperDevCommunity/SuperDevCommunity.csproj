@@ -161,14 +161,15 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Utils.cs" />
-    <Compile Include="Migrations\201803221601510_First.cs" />
-    <Compile Include="Migrations\201803221601510_First.Designer.cs">
-      <DependentUpon>201803221601510_First.cs</DependentUpon>
+    <Compile Include="Migrations\201804022114479_first.cs" />
+    <Compile Include="Migrations\201804022114479_first.Designer.cs">
+      <DependentUpon>201804022114479_first.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\CommentLike.cs" />
     <Compile Include="Controllers\LogoutController.cs" />
+    <Compile Include="Models\DefaultProfilePic.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\PostLike.cs" />
     <Compile Include="Models\SuperDevCommunityContext.cs" />
@@ -228,8 +229,8 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201803221601510_First.resx">
-      <DependentUpon>201803221601510_First.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201804022114479_first.resx">
+      <DependentUpon>201804022114479_first.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

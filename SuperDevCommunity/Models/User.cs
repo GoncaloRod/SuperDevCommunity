@@ -33,12 +33,8 @@ namespace SuperDevCommunity.Models
 
         public string profilePic { get; set; }
 
-        public DateTime createdAt { get; set; }
+        public bool admin { get; set; }
 
-        // Relationed tables
-        public ICollection<Post> posts { get; set; }
-        public ICollection<PostLike> postLikes { get; set; }
-        public ICollection<Comment> comments { get; set; }
-        public ICollection<CommentLike> commentLikes { get; set; }
+        public DateTime createdAt { get; set; }
     }
 }

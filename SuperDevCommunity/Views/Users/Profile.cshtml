@@ -28,7 +28,7 @@
                 <a class="nav-item nav-link" data-toggle="tab" href="#tabComments">Comments <span class="badge badge-pill badge-dark">@ViewBag.comments.Count</span></a>
             </div>
         </nav>
-
+        
         <!-- Tabs -->
         <div class="tab-content" style="margin-top: 10px;">
             <!-- User's posts tab -->
@@ -43,7 +43,7 @@
                             <div class="row" style="margin-top: 50px;">
                                 <!-- Post Creator -->
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
-                                    <small class="text-muted">By @post.user.username at @post.createdAt.ToShortDateString()</small>
+                                    <small class="text-muted">By <a class="text-secondary" href="/users/profile/@post.user.id">@post.user.username</a> at @post.createdAt.ToShortDateString()</small>
                                 </div>
                                 <!-- Like Button -->
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 text-right">
@@ -73,7 +73,7 @@
                 else
                 {
                     <div class="alert alert-primary">
-                        @Model.username didn't post anything yet <i class="em-svg em-disappointed_relieved"></i>
+                        You didn't post anything yet <i class="em-svg em-disappointed_relieved"></i>
                     </div>
                 }
             </div>
@@ -89,7 +89,7 @@
                             <div class="row" style="margin-top: 50px;">
                                 <!-- Post Creator -->
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
-                                    <small class="text-muted">By @post.user.username at @post.createdAt.ToShortDateString()</small>
+                                    <small class="text-muted">By <a class="text-secondary" href="/users/profile/@post.user.id">@post.user.username</a> at @post.createdAt.ToShortDateString()</small>
                                 </div>
                                 <!-- Like Button -->
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 text-right">
@@ -119,7 +119,7 @@
                 else
                 {
                     <div class="alert alert-primary">
-                        @Model.username didn't liked anything yet <i class="em-svg em-disappointed_relieved"></i>
+                        You didn't liked anything yet <i class="em-svg em-disappointed_relieved"></i>
                     </div>
                 }
             </div>
@@ -137,7 +137,7 @@
                                 </div>
                                 <!-- User's Name -->
                                 <div class="col-xl-11 col-lg-11 col-md-11 col-sm-10 col-10">
-                                    <h5>@comment.user.username</h5>
+                                    <a href="/users/profile/@comment.user.id" style="color: #212529"><h5>@comment.user.username</h5></a>
                                 </div>
                             </div>
                             <p style="margin-top: 10px;">@comment.content</p>
@@ -172,7 +172,7 @@
                 else
                 {
                     <div class="alert alert-primary">
-                        @Model.username didn't commented anything yet <i class="em-svg em-disappointed_relieved"></i>
+                        You didn't commented anything yet <i class="em-svg em-disappointed_relieved"></i>
                     </div>
                 }
             </div>

@@ -3,7 +3,7 @@ namespace SuperDevCommunity.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class First : DbMigration
+    public partial class first : DbMigration
     {
         public override void Up()
         {
@@ -17,8 +17,8 @@ namespace SuperDevCommunity.Migrations
                         createdAt = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.key)
-                .ForeignKey("dbo.Users", t => t.userId, cascadeDelete: false)
                 .ForeignKey("dbo.Comments", t => t.commentId, cascadeDelete: false)
+                .ForeignKey("dbo.Users", t => t.userId, cascadeDelete: false)
                 .Index(t => t.userId)
                 .Index(t => t.commentId);
             
@@ -34,8 +34,8 @@ namespace SuperDevCommunity.Migrations
                         createdAt = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.id)
-                .ForeignKey("dbo.Users", t => t.userId, cascadeDelete: false)
                 .ForeignKey("dbo.Posts", t => t.postId, cascadeDelete: false)
+                .ForeignKey("dbo.Users", t => t.userId, cascadeDelete: false)
                 .Index(t => t.userId)
                 .Index(t => t.postId);
             
@@ -63,7 +63,17 @@ namespace SuperDevCommunity.Migrations
                         password = c.String(nullable: false),
                         retryPassword = c.String(nullable: false),
                         profilePic = c.String(),
+                        admin = c.Boolean(nullable: false),
                         createdAt = c.DateTime(nullable: false),
+                    })
+                .PrimaryKey(t => t.id);
+            
+            CreateTable(
+                "dbo.DefaultProfilePics",
+                c => new
+                    {
+                        id = c.Int(nullable: false, identity: true),
+                        imagePath = c.String(nullable: false),
                     })
                 .PrimaryKey(t => t.id);
             
@@ -86,13 +96,13 @@ namespace SuperDevCommunity.Migrations
         
         public override void Down()
         {
-            DropForeignKey("dbo.CommentLikes", "commentId", "dbo.Comments");
-            DropForeignKey("dbo.Comments", "postId", "dbo.Posts");
-            DropForeignKey("dbo.Posts", "userId", "dbo.Users");
             DropForeignKey("dbo.PostLikes", "userId", "dbo.Users");
             DropForeignKey("dbo.PostLikes", "postId", "dbo.Posts");
-            DropForeignKey("dbo.Comments", "userId", "dbo.Users");
             DropForeignKey("dbo.CommentLikes", "userId", "dbo.Users");
+            DropForeignKey("dbo.CommentLikes", "commentId", "dbo.Comments");
+            DropForeignKey("dbo.Comments", "userId", "dbo.Users");
+            DropForeignKey("dbo.Comments", "postId", "dbo.Posts");
+            DropForeignKey("dbo.Posts", "userId", "dbo.Users");
             DropIndex("dbo.PostLikes", new[] { "postId" });
             DropIndex("dbo.PostLikes", new[] { "userId" });
             DropIndex("dbo.Posts", new[] { "userId" });
@@ -101,6 +111,7 @@ namespace SuperDevCommunity.Migrations
             DropIndex("dbo.CommentLikes", new[] { "commentId" });
             DropIndex("dbo.CommentLikes", new[] { "userId" });
             DropTable("dbo.PostLikes");
+            DropTable("dbo.DefaultProfilePics");
             DropTable("dbo.Users");
             DropTable("dbo.Posts");
             DropTable("dbo.Comments");

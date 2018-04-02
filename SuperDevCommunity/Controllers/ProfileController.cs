@@ -28,5 +28,19 @@ namespace SuperDevCommunity.Controllers
 
             return View(user);
         }
+
+        /*
+        public ActionResult ChangeProfilePic()
+        {
+            
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangeProfilePic(User user)
+        {
+            
+        }
+        */
     }
 }
