@@ -1,0 +1,181 @@
+﻿@using SuperDevCommunity.Helpers
+@model SuperDevCommunity.Models.User
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/OnlyNavbar.cshtml";
+}
+
+<div class="row justify-content-center">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-11 col-11">
+        <!-- User name and profile pic -->
+        <div class="row align-items-center justify-content-center">
+            <!-- User's profile pic -->
+            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-8 col-8">
+                <img class="rounded-circle" src="~/img/profile_pics/@Model.profilePic" style="width: 100%;">
+            </div>
+            <!-- User's username -->
+            <div class="col-xl-10 col-lg-10 col-md-10 col-sm-11 col-11">
+                <h2>@Model.username</h2>
+            </div>
+        </div>
+
+        <!-- Option tabs -->
+        <nav>
+            <div class="nav nav-tabs" style="margin-top: 25px;">
+                <a class="nav-item nav-link active" data-toggle="tab" href="#tabPosts">Posts <span class="badge badge-pill badge-dark">@ViewBag.posts.Count</span></a>
+                <a class="nav-item nav-link" data-toggle="tab" href="#tabLikes">Likes <span class="badge badge-pill badge-dark">@ViewBag.likes.Count</span></a>
+                <a class="nav-item nav-link" data-toggle="tab" href="#tabComments">Comments <span class="badge badge-pill badge-dark">@ViewBag.comments.Count</span></a>
+            </div>
+        </nav>
+
+        <!-- Tabs -->
+        <div class="tab-content" style="margin-top: 10px;">
+            <!-- User's posts tab -->
+            <div class="tab-pane fade show active" id="tabPosts">
+                @if (ViewBag.Posts.Count > 0)
+                {
+                    foreach (SuperDevCommunity.Models.Post post in ViewBag.Posts)
+                    {
+                        <div class="post-container" id="@post.id">
+                            <p>@post.content</p>
+                            <a class="text-muted float-lg-right" href="/posts/details/@post.id">Read More...</a>
+                            <div class="row" style="margin-top: 50px;">
+                                <!-- Post Creator -->
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                                    <small class="text-muted">By @post.user.username at @post.createdAt.ToShortDateString()</small>
+                                </div>
+                                <!-- Like Button -->
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 text-right">
+                                    @if (Request.IsAuthenticated)
+                                    {
+                                        if (Html.IsPostLiked(post.id, int.Parse(User.Identity.Name)))
+                                        {
+                                            @post.likes
+                                            <a href="/posts/likepost/@post.id?url=/profile"><i class="far fa-thumbs-up"></i> Like</a>
+                                        }
+                                        else
+                                        {
+                                            @post.likes
+                                            <a href="/posts/unlikepost/@post.id?url=/profile"><i class="fas fa-thumbs-up"></i> Unlike</a>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        @post.likes
+                                        <a href="/posts/likepost/@post.id?url=/profile"><i class="far fa-thumbs-up"></i> Like</a>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="alert alert-primary">
+                        @Model.username didn't post anything yet <i class="em-svg em-disappointed_relieved"></i>
+                    </div>
+                }
+            </div>
+            <!-- User's likes tab -->
+            <div class="tab-pane fade" id="tabLikes">
+                @if (ViewBag.Likes.Count > 0)
+                {
+                    foreach (SuperDevCommunity.Models.Post post in ViewBag.Likes)
+                    {
+                        <div class="post-container" id="@post.id">
+                            <p>@post.content</p>
+                            <a class="text-muted float-lg-right" href="/posts/details/@post.id">Read More...</a>
+                            <div class="row" style="margin-top: 50px;">
+                                <!-- Post Creator -->
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                                    <small class="text-muted">By @post.user.username at @post.createdAt.ToShortDateString()</small>
+                                </div>
+                                <!-- Like Button -->
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 text-right">
+                                    @if (Request.IsAuthenticated)
+                                    {
+                                        if (Html.IsPostLiked(post.id, int.Parse(User.Identity.Name)))
+                                        {
+                                            @post.likes
+                                            <a href="/posts/likepost/@post.id?url=/profile"><i class="far fa-thumbs-up"></i> Like</a>
+                                        }
+                                        else
+                                        {
+                                            @post.likes
+                                            <a href="/posts/unlikepost/@post.id?url=/profile"><i class="fas fa-thumbs-up"></i> Unlike</a>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        @post.likes
+                                        <a href="/posts/likepost/@post.id?url=/profile"><i class="far fa-thumbs-up"></i> Like</a>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="alert alert-primary">
+                        @Model.username didn't liked anything yet <i class="em-svg em-disappointed_relieved"></i>
+                    </div>
+                }
+            </div>
+            <!-- User's comments tab-->
+            <div class="tab-pane fade" id="tabComments">
+                @if (ViewBag.Comments.Count > 0)
+                {
+                    foreach (SuperDevCommunity.Models.Comment comment in ViewBag.Comments)
+                    {
+                        <div class="post-container">
+                            <div class="row align-items-center">
+                                <!-- User's photo -->
+                                <div class="col-xl-1 col-lg-1 col-md-1 col-sm-2 col-2">
+                                    <img class="rounded-circle" src="/img/profile_pics/@comment.user.profilePic" style="width: 100%">
+                                </div>
+                                <!-- User's Name -->
+                                <div class="col-xl-11 col-lg-11 col-md-11 col-sm-10 col-10">
+                                    <h5>@comment.user.username</h5>
+                                </div>
+                            </div>
+                            <p style="margin-top: 10px;">@comment.content</p>
+                            <div class="row">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <a class="text-muted float-lg-right" href="/posts/details/@comment.id">Go to Post</a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <!-- Like Button -->
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-right">
+                                    @if (Request.IsAuthenticated)
+                                    {
+                                        if (Html.IsCommentLiked(comment.id, int.Parse(User.Identity.Name)))
+                                        {
+                                            @comment.likes <a href="/comments/likecomment/@comment.id?url=/posts/details/@Model.id"><i class="far fa-thumbs-up"></i> Like</a>
+                                        }
+                                        else
+                                        {
+                                            @comment.likes <a href="/comments/unlikecomment/@comment.id?url=/posts/details/@Model.id"><i class="fas fa-thumbs-up"></i> Unlike</a>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        @comment.likes <a href="/comments/likecomment/@comment.id?url=/home#@comment.id"><i class="far fa-thumbs-up"></i> Like</a>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="alert alert-primary">
+                        @Model.username didn't commented anything yet <i class="em-svg em-disappointed_relieved"></i>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
