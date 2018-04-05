@@ -74,6 +74,7 @@ namespace SuperDevCommunity.Migrations
                     {
                         id = c.Int(nullable: false, identity: true),
                         imagePath = c.String(nullable: false),
+                        name = c.String(nullable: false),
                     })
                 .PrimaryKey(t => t.id);
             

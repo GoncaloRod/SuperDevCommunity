@@ -12,5 +12,9 @@ namespace SuperDevCommunity.Models
         [Display(Name = "Image")]
         [DataType(DataType.ImageUrl)]
         public string imagePath { get; set; }
+        
+        [Required(ErrorMessage = "This field is required!")]
+        [Display(Name = "Name")]
+        public string name { get; set; }
     }
 }

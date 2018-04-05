@@ -29,18 +29,47 @@ namespace SuperDevCommunity.Controllers
             return View(user);
         }
 
-        /*
         public ActionResult ChangeProfilePic()
         {
-            
+            ViewBag.defaultPics = db.DefaultProfilePics.ToList();
+            ViewBag.user = db.Users.Find(int.Parse(User.Identity.Name));
+
+            return View();
+        }
+        
+        [HttpPost]
+        public ActionResult SetDefaultProfilePic(DefaultProfilePic pic)
+        {
+            // Get logged user
+            User user = db.Users.Find(int.Parse(User.Identity.Name));
+
+            // Get pic info
+            pic = db.DefaultProfilePics.Find(pic.id);
+
+            if (pic != null)
+            {
+                user.profilePic = pic.imagePath;
+
+                db.SaveChanges();
+                
+                return Redirect("/profile");
+
+            }
+
+            return RedirectToAction("ChangeProfilePic");
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult ChangeProfilePic(User user)
+        public ActionResult UploadProfilePic()
         {
+            if (Request.Files.Count == 1)
+            {
+                // https://stackoverflow.com/questions/11063900/determine-if-uploaded-file-is-image-any-format-on-mvc
+                
+                return Redirect("/profile");
+            }
             
+            return RedirectToAction("ChangeProfilePic");
         }
-        */
     }
 }

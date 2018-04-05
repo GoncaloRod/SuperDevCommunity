@@ -151,6 +151,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
+    <Compile Include="Controllers\DefaultProfilePicsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
@@ -161,9 +162,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Utils.cs" />
-    <Compile Include="Migrations\201804022114479_first.cs" />
-    <Compile Include="Migrations\201804022114479_first.Designer.cs">
-      <DependentUpon>201804022114479_first.cs</DependentUpon>
+    <Compile Include="Migrations\201804042046584_first.cs" />
+    <Compile Include="Migrations\201804042046584_first.Designer.cs">
+      <DependentUpon>201804042046584_first.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -198,6 +199,7 @@
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="Fonts\Inconsolata-Bold.ttf" />
     <Content Include="Fonts\Inconsolata-Regular.ttf" />
+    <Content Include="Views\Profile\ChangeProfilePic.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -219,7 +221,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Scripts\" />
-    <Folder Include="Views\Comments\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -229,8 +230,8 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201804022114479_first.resx">
-      <DependentUpon>201804022114479_first.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201804042046584_first.resx">
+      <DependentUpon>201804042046584_first.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

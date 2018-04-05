@@ -37,7 +37,15 @@ namespace SuperDevCommunity.Controllers
                     user.password = Convert.ToBase64String(password);
                     user.retryPassword = user.password;
 
-                    user.profilePic = "default.png";
+                    List<DefaultProfilePic> pics = db.DefaultProfilePics.ToList();
+
+                    if (pics.Count > 0)
+                    {
+                        Random rnd = new Random();
+
+                        user.profilePic = pics[rnd.Next(0, pics.Count - 1)].imagePath;
+                    }
+
                     user.createdAt = DateTime.Now;
 
                     db.Users.Add(user);
