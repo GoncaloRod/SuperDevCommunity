@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Hosting;
@@ -62,10 +63,22 @@ namespace SuperDevCommunity.Controllers
         [HttpPost]
         public ActionResult UploadProfilePic()
         {
-            if (Request.Files.Count == 1)
+            HttpPostedFileBase pic = Request.Files["uploadPic"];
+            
+            if (pic != null)
             {
-                // https://stackoverflow.com/questions/11063900/determine-if-uploaded-file-is-image-any-format-on-mvc
+                User user = db.Users.Find(int.Parse(User.Identity.Name));
                 
+                Guid guid = Guid.NewGuid();
+                
+                string fileName = $"{guid}-{User.Identity.Name.ToString()}.{Path.GetExtension(pic.FileName)}";
+
+                user.profilePic = fileName;
+
+                db.SaveChanges();
+                
+                pic.SaveAs($"{Server.MapPath("~/img/profile_pics")}{fileName}");
+
                 return Redirect("/profile");
             }
             

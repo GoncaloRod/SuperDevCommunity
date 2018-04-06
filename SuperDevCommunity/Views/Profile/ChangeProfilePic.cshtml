@@ -38,7 +38,7 @@
                 <h4 class="text-center">Upload Pic</h4>
                 <form action="/profile/uploadprofilepic" method="POST">
                     <label class="btn btn-outline-primary btn-block" style="margin-bottom: 15px;">
-                        <i class="fas fa-folder-open"></i> Choose File<input class="form-control-file" type="file" id="uploadProfilePic" name="pic" accept=".png,.jpg,.jpeg" style="display: none" required>
+                        <i class="fas fa-folder-open"></i> Choose File<input type="file" name="uploadPic" accept=".png,.jpg,.jpeg" style="display: none" required>
                     </label>
                     <button class="btn btn-primary btn-sm btn-block" type="submit"><i class="fas fa-upload"></i> Upload</button>
                 </form>
@@ -56,6 +56,16 @@
                     $("#profilePic").attr("src", "/img/profile_pics/" + data);
                 });
             }
+        });
+        
+        $(document).ready(function() {
+            $('input[type=file]').change(function() {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#profilePic').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(this.files[0]);
+            });
         });
     </script>
 }
