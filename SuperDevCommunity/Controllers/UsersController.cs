@@ -7,10 +7,12 @@ using SuperDevCommunity.Models;
 
 namespace SuperDevCommunity.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class UsersController : Controller
     {
         private SuperDevCommunityContext db = new SuperDevCommunityContext();
-
+        
+        [AllowAnonymous]
         public ActionResult Profile(int? id)
         {
             if (User.Identity.IsAuthenticated) if (id == int.Parse(User.Identity.Name)) return Redirect("/profile");
@@ -29,6 +31,51 @@ namespace SuperDevCommunity.Controllers
             }
 
             return View(user);
+        }
+
+        public ActionResult Manage()
+        {
+            int userId = int.Parse(User.Identity.Name);
+
+            ViewBag.Users = db.Users.Where(u => u.id != userId).ToList();
+                
+            return View();
+        }
+
+        public ActionResult MakeAdmin(int? id)
+        {
+            if (id != null)
+            {
+                User user = db.Users.First(u => u.id == id);
+
+                if (user == null) return HttpNotFound();
+
+                user.admin = true;
+
+                db.SaveChanges();
+
+                return RedirectToAction("Manage");
+            }
+            
+            return Redirect("/admin");
+        }
+
+        public ActionResult RemoveAdmin(int? id)
+        {
+            if (id != null)
+            {
+                User user = db.Users.First(u => u.id == id);
+
+                if (user == null) return HttpNotFound();
+
+                user.admin = false;
+                
+                db.SaveChanges();
+
+                return RedirectToAction("Manage");
+            }
+            
+            return Redirect("/admin");
         }
     }
 }

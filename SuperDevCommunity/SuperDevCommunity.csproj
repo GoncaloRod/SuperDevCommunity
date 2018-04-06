@@ -150,6 +150,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\DefaultProfilePicsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -167,6 +168,7 @@
       <DependentUpon>201804042046584_first.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AppRoleProvider.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\CommentLike.cs" />
     <Compile Include="Controllers\LogoutController.cs" />
@@ -199,7 +201,11 @@
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="Fonts\Inconsolata-Bold.ttf" />
     <Content Include="Fonts\Inconsolata-Regular.ttf" />
+    <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Profile\ChangeProfilePic.cshtml" />
+    <Content Include="Views\Shared\Includes\Head.cshtml" />
+    <Content Include="Views\Shared\Includes\Navbar.cshtml" />
+    <Content Include="Views\Users\Manage.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

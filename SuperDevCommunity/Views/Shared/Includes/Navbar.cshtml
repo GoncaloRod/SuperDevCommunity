@@ -1,0 +1,33 @@
+@using SuperDevCommunity.Helpers
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="/Home"><span class="logo">super <span class="logo-blue">dev</span>; <span class="logo-small">community</span></span></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active"><a class="nav-link active" href="/home">Home</a></li>
+            </ul>
+
+            <ul class="navbar-nav">
+                @if (Request.IsAuthenticated)
+                {
+                    <li class="nav-item"><img class="rounded-circle" src="/img/profile_pics/@Html.GetUserWithId(int.Parse(User.Identity.Name)).profilePic" style="width: 40px;"></li>
+                    <li class="nav-item active"><a class="nav-link active" href="/profile">@Html.GetUserWithId(int.Parse(User.Identity.Name)).username</a></li>
+                    <li class="nav-item active"><a class="nav-link active" href="/logout"><i class="fas fa-sign-out-alt"></i></a></li>
+                    if (User.IsInRole("admin"))
+                    {
+                        <li class="nav-item active"><a class="nav-link active" href="/admin"><i class="fas fa-wrench"></i></a></li>
+                    }
+                }
+                else
+                {
+                    <li class="nav-item active"><a class="nav-link active" href="/login">Login</a></li>
+                }
+            </ul>
+        </div>
+    </div>
+</nav>
