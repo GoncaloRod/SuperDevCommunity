@@ -25,5 +25,10 @@ namespace SuperDevCommunity.Helpers
         {
             return db.CommentLikes.Where(l => l.commentId == commentId).Where(l => l.userId == userId).ToList().Count == 0;
         }
+
+        public static List<Post> TopPosts(this HtmlHelper htmlHelper, int quantity)
+        {
+            return db.Posts.Where(p => p.likes > 0).OrderBy(p => p.likes).Take(quantity).ToList();
+        }
     }
 }

@@ -205,6 +205,7 @@
     <Content Include="Views\Profile\ChangeProfilePic.cshtml" />
     <Content Include="Views\Shared\Includes\Head.cshtml" />
     <Content Include="Views\Shared\Includes\Navbar.cshtml" />
+    <Content Include="Views\Shared\Includes\TopPosts.cshtml" />
     <Content Include="Views\Users\Manage.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

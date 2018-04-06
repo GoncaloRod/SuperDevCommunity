@@ -1,0 +1,45 @@
+﻿@using SuperDevCommunity.Helpers
+
+<h2>Top Posts</h2>
+
+@if (Html.TopPosts(5).Count > 0)
+{
+    foreach (SuperDevCommunity.Models.Post post in Html.TopPosts(5))
+    {
+        <div class="post-container">
+            <p>@post.content</p>
+            <a class="text-muted float-lg-right" href="/posts/details/@post.id">Read More...</a>
+            <div class="row" style="margin-top: 50px;">
+                <!-- Post Creator -->
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                    <small class="text-muted">By <a class="text-secondary" href="/users/profile/@post.user.id">@post.user.username</a> at @post.createdAt.ToShortDateString()</small>
+                </div>
+                <!-- Like Button -->
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 text-right">
+                    @if (Request.IsAuthenticated)
+                    {
+                        if (Html.IsPostLiked(post.id, int.Parse(User.Identity.Name)))
+                        {
+                            @post.likes <a href="/posts/likepost/@post.id?url=/home#@post.id"><i class="far fa-thumbs-up"></i> Like</a>
+                        }
+                        else
+                        {
+                            @post.likes <a href="/posts/unlikepost/@post.id?url=/home#@post.id"><i class="fas fa-thumbs-up"></i> Unlike</a>
+                        }
+                    }
+                    else
+                    {
+                        @post.likes <a href="/posts/likepost/@post.id?url=/home#@post.id"><i class="far fa-thumbs-up"></i> Like</a>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <div class="alert alert-primary text-center">
+        Nothing to show here <i class="em-svg em-disappointed_relieved"></i>
+    </div>
+}
+
