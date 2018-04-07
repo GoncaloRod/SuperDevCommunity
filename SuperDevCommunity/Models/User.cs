@@ -20,7 +20,7 @@ namespace SuperDevCommunity.Models
         public string email { get; set; }
 
         [Required(ErrorMessage = "This field is required!")]
-        [MinLength(5, ErrorMessage = "Password is too short!")]
+        [MinLength(5, ErrorMessage = "Password must have at least 5 characters!")]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string password { get; set; }
