@@ -39,6 +39,7 @@ namespace SuperDevCommunity.Controllers
         }
         
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult SetDefaultProfilePic(DefaultProfilePic pic)
         {
             // Get logged user
@@ -61,25 +62,31 @@ namespace SuperDevCommunity.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult UploadProfilePic()
         {
             HttpPostedFileBase pic = Request.Files["uploadPic"];
             
             if (pic != null)
             {
-                User user = db.Users.Find(int.Parse(User.Identity.Name));
-                
-                Guid guid = Guid.NewGuid();
-                
-                string fileName = $"{guid}-{User.Identity.Name.ToString()}.{Path.GetExtension(pic.FileName)}";
+                string extention = Path.GetExtension(pic.FileName);
 
-                user.profilePic = fileName;
-
-                db.SaveChanges();
+                if (extention == ".png" || extention == ".jpg" || extention == ".jpeg")
+                {
+                    User user = db.Users.Find(int.Parse(User.Identity.Name));
                 
-                pic.SaveAs($"{Server.MapPath("~/img/profile_pics")}{fileName}");
+                    Guid guid = Guid.NewGuid();
+                
+                    string fileName = $"{guid}-{User.Identity.Name.ToString()}{extention}";
 
-                return Redirect("/profile");
+                    user.profilePic = fileName;
+
+                    db.SaveChanges();
+                
+                    pic.SaveAs($"{Server.MapPath("~/img/profile_pics/")}{fileName}");
+
+                    return Redirect("/profile");
+                }
             }
             
             return RedirectToAction("ChangeProfilePic");
