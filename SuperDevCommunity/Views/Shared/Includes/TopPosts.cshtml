@@ -10,12 +10,8 @@
             <p>@post.content</p>
             <a class="text-muted float-lg-right" href="/posts/details/@post.id">Read More...</a>
             <div class="row" style="margin-top: 50px;">
-                <!-- Post Creator -->
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
-                    <small class="text-muted">By <a class="text-secondary" href="/users/profile/@post.user.id">@post.user.username</a> at @post.createdAt.ToShortDateString()</small>
-                </div>
                 <!-- Like Button -->
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 text-right">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-right">
                     @if (Request.IsAuthenticated)
                     {
                         if (Html.IsPostLiked(post.id, int.Parse(User.Identity.Name)))

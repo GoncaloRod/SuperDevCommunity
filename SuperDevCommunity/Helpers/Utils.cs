@@ -28,7 +28,9 @@ namespace SuperDevCommunity.Helpers
 
         public static List<Post> TopPosts(this HtmlHelper htmlHelper, int quantity)
         {
-            return db.Posts.Where(p => p.likes > 0).OrderBy(p => p.likes).Take(quantity).ToList();
+            List<Post> posts = db.Posts.Where(p => p.likes > 0).OrderBy(p => p.likes).Take(quantity).ToList();
+
+            return posts;
         }
     }
 }
