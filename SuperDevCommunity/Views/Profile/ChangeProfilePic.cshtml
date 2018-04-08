@@ -5,47 +5,49 @@
     Layout = "~/Views/Shared/OnlyNavbar.cshtml";
 }
 
-<h2 class="text-center">Change Profile Pic</h2>
-
-<div class="row justify-content-center">
-    <div class="col-xl-10 col-lg-10 col-md-10 col-sm-11 col-11">
-        <!-- Current Profile Pic -->
-        <div class="row justify-content-center" style="margin-top: 25px;">
-            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-11 col-11">
-                <img class="rounded-circle" id="profilePic" src="/img/profile_pics/@ViewBag.user.profilePic" style="width: 100%;"></img>
+<div class="white-box">
+    <h2 class="text-center">Change Profile Pic</h2>
+    
+    <div class="row justify-content-center">
+        <div class="col-xl-10 col-lg-10 col-md-10 col-sm-11 col-11">
+            <!-- Current Profile Pic -->
+            <div class="row justify-content-center" style="margin-top: 25px;">
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-11 col-11">
+                    <img class="rounded-circle" id="profilePic" src="/img/profile_pics/@ViewBag.user.profilePic" style="width: 100%;"></img>
+                </div>
             </div>
-        </div>
-        <div class="row" style="margin-top: 30px;">
-            <!-- Defult Pics -->
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                <h4 class="text-center">Default Profile Pics</h4>
-                <form action="/profile/setdefaultprofilepic" method="POST">
-                    @Html.AntiForgeryToken()
-                    <div class="form-group">
-                        <select class="form-control" id="defaultPicSelect" name="id">
-                            <option value="">-- Choose a default profile pic --</option>
-                            @foreach (SuperDevCommunity.Models.DefaultProfilePic pic in ViewBag.defaultPics)
-                            {
-                                <option value="@pic.id">@pic.name</option>
-                            }
-                        </select>
-                    </div>
-
-                    <button class="btn btn-primary btn-sm btn-block" type="submit"><i class="fas fa-save"></i> Save</button>
-                </form>
-            </div>
-            <!-- User's Upload -->
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                
-                <h4 class="text-center">Upload Pic</h4>
-                @using (Html.BeginForm("UploadProfilePic", "Profile", FormMethod.Post, new {enctype = "multipart/form-data"}))
-                {
-                    @Html.AntiForgeryToken()
-                    <label class="btn btn-outline-primary btn-block" style="margin-bottom: 15px;">
-                        <i class="fas fa-folder-open"></i> Choose File<input type="file" name="uploadPic" accept=".png,.jpg,.jpeg" style="display: none" required>
-                    </label>
-                    <button class="btn btn-primary btn-sm btn-block" type="submit"><i class="fas fa-upload"></i> Upload</button>
-                }
+            <div class="row" style="margin-top: 30px;">
+                <!-- Defult Pics -->
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                    <h4 class="text-center">Default Profile Pics</h4>
+                    <form action="/profile/setdefaultprofilepic" method="POST">
+                        @Html.AntiForgeryToken()
+                        <div class="form-group">
+                            <select class="form-control" id="defaultPicSelect" name="id">
+                                <option value="">-- Choose a default profile pic --</option>
+                                @foreach (SuperDevCommunity.Models.DefaultProfilePic pic in ViewBag.defaultPics)
+                                {
+                                    <option value="@pic.id">@pic.name</option>
+                                }
+                            </select>
+                        </div>
+    
+                        <button class="btn btn-primary btn-sm btn-block" type="submit"><i class="fas fa-save"></i> Save</button>
+                    </form>
+                </div>
+                <!-- User's Upload -->
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                    
+                    <h4 class="text-center">Upload Pic</h4>
+                    @using (Html.BeginForm("UploadProfilePic", "Profile", FormMethod.Post, new {enctype = "multipart/form-data"}))
+                    {
+                        @Html.AntiForgeryToken()
+                        <label class="btn btn-outline-primary btn-block" style="margin-bottom: 15px;">
+                            <i class="fas fa-folder-open"></i> Choose File<input type="file" name="uploadPic" accept=".png,.jpg,.jpeg" style="display: none" required>
+                        </label>
+                        <button class="btn btn-primary btn-sm btn-block" type="submit"><i class="fas fa-upload"></i> Upload</button>
+                    }
+                </div>
             </div>
         </div>
     </div>

@@ -227,6 +227,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\bootstrap-scss" />
     <Folder Include="Scripts\" />
   </ItemGroup>
   <ItemGroup>

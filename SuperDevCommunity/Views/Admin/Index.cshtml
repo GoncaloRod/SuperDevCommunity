@@ -6,15 +6,18 @@
     Layout = "~/Views/Shared/OnlyNavbar.cshtml";
 }
 
-<h2>Welcome @Html.GetUserWithId(int.Parse(User.Identity.Name)).username!</h2>
-
-<div class="row" style="margin-top: 25px;">
-    <!--Manage Users -->
-    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
-        <div class="card border-primary">
-            <div class="card-body text-primary text-center">
-                <a href="/users/manage"><h5 class="card-title"><i class="fas fa-users"></i> Manage Users</h5></a>
+<div class="white-box">
+    <h2>Welcome @Html.GetUserWithId(int.Parse(User.Identity.Name)).username!</h2>
+    
+    <div class="row" style="margin-top: 25px;">
+        <!--Manage Users -->
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
+            <div class="card border-primary">
+                <div class="card-body text-primary text-center">
+                    <a href="/users/manage"><h5 class="card-title"><i class="fas fa-users"></i> Manage Users</h5></a>
+                </div>
             </div>
         </div>
     </div>
 </div>
+

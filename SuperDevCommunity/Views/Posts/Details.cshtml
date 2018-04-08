@@ -23,20 +23,21 @@
     <div class="row">
         <!-- Like Button -->
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-right">
+            <a href="" data-toggle="modal" data-target="#likesModal" style="color: #212529">@Model.likes</a> 
             @if (Request.IsAuthenticated)
             {
                 if (Html.IsPostLiked(Model.id, int.Parse(User.Identity.Name)))
                 {
-                    @Model.likes <a href="/posts/likepost/@Model.id?url=/posts/details/@Model.id"><i class="far fa-thumbs-up"></i> Like</a>
+                    <a href="/posts/likepost/@Model.id?url=/posts/details/@Model.id"><i class="far fa-thumbs-up"></i> Like</a>
                 }
                 else
                 {
-                    @Model.likes <a href="/posts/unlikepost/@Model.id?url=/posts/details/@Model.id"><i class="fas fa-thumbs-up"></i> Unlike</a>
+                    <a href="/posts/unlikepost/@Model.id?url=/posts/details/@Model.id"><i class="fas fa-thumbs-up"></i> Unlike</a>
                 }
             }
             else
             {
-                @Model.likes <a href="/posts/likepost/@Model.id?url=/posts/details/@Model.id"><i class="far fa-thumbs-up"></i> Like</a>
+                <a href="/posts/likepost/@Model.id?url=/posts/details/@Model.id"><i class="far fa-thumbs-up"></i> Like</a>
             }
         </div>
     </div>
@@ -91,6 +92,38 @@
                 {
                     @comment.likes <a href="/comments/likecomment/@comment.id?url=/home#@comment.id"><i class="far fa-thumbs-up"></i> Like</a>
                 }
+            </div>
+        </div>
+    </div>
+}
+
+@section modals
+{
+    <div class="modal fade" id="likesModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Likes</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    @foreach (SuperDevCommunity.Models.PostLike like in ViewBag.likes)
+                    {
+                        <div class="row align-items-center">
+                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-3">
+                                <img class="rounded-circle" src="/img/profile_pics/@like.user.profilePic" style="width: 100%;"/>
+                            </div>
+                            <div class="col-xl-10 col-lg-10 col-md-10 col-sm-9 col-9">
+                                <h5>@like.user.username</h5>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>

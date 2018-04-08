@@ -1,14 +1,14 @@
-﻿@using Antlr.Runtime
-@{
+﻿@{
     ViewBag.Title = "Manage Users";
     Layout = "~/Views/Shared/OnlyNavbar.cshtml";
 }
 
-<h2>Users</h2>
+<div class="white-box">
+    <h2>Users</h2>
 
-<div class="table-responsive">
-    <table class="table table-striped table-sm" id="userTable">
-        <thead>
+    <div class="table-responsive">
+        <table class="table table-striped table-sm" id="userTable">
+            <thead>
             <tr>
                 <th>#</th>
                 <th>Username</th>
@@ -16,8 +16,8 @@
                 <th>Created At</th>
                 <th>Actions</th>
             </tr>
-        </thead>
-        <tbody>
+            </thead>
+            <tbody>
             @foreach (SuperDevCommunity.Models.User user in ViewBag.users)
             {
                 <tr class="@if (user.admin) { @Html.Raw("table-primary") }"> 
@@ -37,8 +37,9 @@
                     </td>
                 </tr>
             }
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
 </div>
 
 @section srcipts

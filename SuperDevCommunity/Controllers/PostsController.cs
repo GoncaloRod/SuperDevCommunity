@@ -43,6 +43,7 @@ namespace SuperDevCommunity.Controllers
 
             if (post == null) return HttpNotFound();
 
+            ViewBag.Likes = db.PostLikes.Where(l => l.postId == post.id).ToList();
             ViewBag.Comments = db.Comments.Where(c => c.postId == post.id).ToList();
 
             return View(post);
