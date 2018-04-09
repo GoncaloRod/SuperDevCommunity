@@ -6,40 +6,50 @@
 <div class="white-box">
     <h2>Users</h2>
 
-    <div class="table-responsive">
-        <table class="table table-striped table-sm" id="userTable">
-            <thead>
-            <tr>
-                <th>#</th>
-                <th>Username</th>
-                <th>Email</th>
-                <th>Created At</th>
-                <th>Actions</th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach (SuperDevCommunity.Models.User user in ViewBag.users)
-            {
-                <tr class="@if (user.admin) { @Html.Raw("table-primary") }"> 
-                    <th>@user.id</th>
-                    <td>@user.username</td>
-                    <td>@user.email</td>
-                    <td>@user.createdAt.ToShortDateString()</td>
-                    <td>
-                        @if (!user.admin)
-                        {
-                            <a href="/users/makeadmin/@user.id">Make Admin</a>
-                        }
-                        else
-                        {
-                            <a href="/users/removeadmin/@user.id">Remove Admin</a>
-                        }
-                    </td>
-                </tr>
-            }
-            </tbody>
-        </table>
-    </div>
+    @if (ViewBag.users.Count > 0)
+    {
+        <div class="table-responsive">
+            <table class="table table-striped table-sm" id="userTable">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Created At</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (SuperDevCommunity.Models.User user in ViewBag.users)
+                    {
+                        <tr class="@if (user.admin) { @Html.Raw("table-primary") }">
+                            <th>@user.id</th>
+                            <td>@user.username</td>
+                            <td>@user.email</td>
+                            <td>@user.createdAt.ToShortDateString()</td>
+                            <td>
+                                @if (!user.admin)
+                                {
+                                    <a href="/users/makeadmin/@user.id">Make Admin</a>
+                                }
+                                else
+                                {
+                                    <a href="/users/removeadmin/@user.id">Remove Admin</a>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-primary text-center">
+            There are no registered users besides you.
+        </div>
+    }
+    
 </div>
 
 @section srcipts
